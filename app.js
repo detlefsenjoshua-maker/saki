@@ -5,182 +5,233 @@
 const STORAGE_KEY = "saki-joshua-app-v1";
 
 const CITIES = {
-  "Hamburg":   { lat: 53.55, lon: 9.99 },
-  "Berlin":    { lat: 52.52, lon: 13.405 },
-  "Cologne":   { lat: 50.94, lon: 6.96 },
-  "Frankfurt": { lat: 50.11, lon: 8.68 },
-  "Munich":    { lat: 48.14, lon: 11.58 },
-  "Stuttgart": { lat: 48.78, lon: 9.18 },
-  "Tokyo":     { lat: 35.68, lon: 139.69 },
-  "Osaka":     { lat: 34.69, lon: 135.50 },
-  "Kyoto":     { lat: 35.01, lon: 135.77 },
-  "Nagoya":    { lat: 35.18, lon: 136.91 },
-  "Sapporo":   { lat: 43.06, lon: 141.35 },
-  "Fukuoka":   { lat: 33.59, lon: 130.40 },
+  "Hamburg":           { lat: 53.55, lon: 9.99 },
+  "Leipzig Connewitz": { lat: 51.34, lon: 12.39 },
+  "Hohwacht":          { lat: 54.08, lon: 10.78 },
+  "Flensburg":         { lat: 54.78, lon: 9.44 },
+  "Brussels":          { lat: 50.85, lon: 4.35 },
+  "Feldkirch":         { lat: 47.24, lon: 9.60 },
 };
 
-const VOCAB = [
-  {
-    jp: [
-      ["こんにちは", "Konnichiwa", "Hello"],
-      ["ありがとう", "Arigatou", "Thank you"],
-      ["さようなら", "Sayounara", "Goodbye"],
-      ["おはよう", "Ohayou", "Good morning"],
-      ["おやすみ", "Oyasumi", "Good night"],
-    ],
-    de: [
-      ["Hallo", "hello", "„Hallo, wie geht's?“"],
-      ["Danke", "thank you", "„Danke schön!“"],
-      ["Bitte", "please / you're welcome", "„Bitte, gern geschehen.“"],
-      ["Tschüss", "bye", "„Tschüss, bis bald!“"],
-      ["Ich liebe dich", "I love you", "„Ich liebe dich, Saki.“"],
-    ],
-  },
-  {
-    jp: [
-      ["愛してる", "Aishiteru", "I love you"],
-      ["大好き", "Daisuki", "I like you very much"],
-      ["会いたい", "Aitai", "I miss you"],
-      ["元気？", "Genki?", "Are you okay?"],
-      ["かわいい", "Kawaii", "cute"],
-    ],
-    de: [
-      ["Wie geht's?", "How are you?", "„Wie geht's dir, Saki?“"],
-      ["Gut", "good", "„Mir geht's gut.“"],
-      ["schlafen", "to sleep", "„Gute Nacht, schlaf gut!“"],
-      ["Essen", "food", "„Das Essen ist lecker.“"],
-      ["trinken", "to drink", "„Möchtest du etwas trinken?“"],
-    ],
-  },
-  {
-    jp: [
-      ["水", "Mizu", "water"],
-      ["ご飯", "Gohan", "rice / meal"],
-      ["美味しい", "Oishii", "delicious"],
-      ["飲み物", "Nomimono", "drink"],
-      ["朝ごはん", "Asagohan", "breakfast"],
-    ],
-    de: [
-      ["Katze", "cat", "„Die Katze ist süß.“"],
-      ["Hund", "dog", "„Der Hund spielt gern.“"],
-      ["Blume", "flower", "„Diese Blume ist schön.“"],
-      ["Stern", "star", "„Schau, ein Stern!“"],
-      ["süß", "cute", "„Du bist süß.“"],
-    ],
-  },
-  {
-    jp: [
-      ["猫", "Neko", "cat"],
-      ["犬", "Inu", "dog"],
-      ["鳥", "Tori", "bird"],
-      ["花", "Hana", "flower"],
-      ["星", "Hoshi", "star"],
-    ],
-    de: [
-      ["heute", "today", "„Heute ist ein schöner Tag.“"],
-      ["morgen", "tomorrow", "„Morgen sehen wir uns!“"],
-      ["gestern", "yesterday", "„Gestern war lustig.“"],
-      ["wann", "when", "„Wann kommst du?“"],
-      ["hier", "here", "„Hier ist es schön.“"],
-    ],
-  },
-  {
-    jp: [
-      ["今日", "Kyou", "today"],
-      ["明日", "Ashita", "tomorrow"],
-      ["昨日", "Kinou", "yesterday"],
-      ["いつ", "Itsu", "when"],
-      ["ここ", "Koko", "here"],
-    ],
-    de: [
-      ["Bahnhof", "train station", "„Wir treffen uns am Bahnhof.“"],
-      ["Flugzeug", "airplane", "„Das Flugzeug nach Japan.“"],
-      ["Ticket", "ticket", "„Hast du das Ticket?“"],
-      ["Flughafen", "airport", "„Am Flughafen treffen.“"],
-      ["reisen", "to travel", "„Ich reise gern.“"],
-    ],
-  },
-  {
-    jp: [
-      ["駅", "Eki", "train station"],
-      ["飛行機", "Hikouki", "airplane"],
-      ["切符", "Kippu", "ticket"],
-      ["空港", "Kuukou", "airport"],
-      ["旅行", "Ryokou", "trip"],
-    ],
-    de: [
-      ["heiß", "hot", "„Heute ist es heiß.“"],
-      ["kalt", "cold", "„In Japan ist es kalt.“"],
-      ["Regen", "rain", "„Es regnet heute.“"],
-      ["Schnee", "snow", "„Im Winter liegt Schnee.“"],
-      ["sonnig", "sunny", "„Morgen ist es sonnig.“"],
-    ],
-  },
-  {
-    jp: [
-      ["暑い", "Atsui", "hot"],
-      ["寒い", "Samui", "cold"],
-      ["雨", "Ame", "rain"],
-      ["雪", "Yuki", "snow"],
-      ["晴れ", "Hare", "sunny"],
-    ],
-    de: [
-      ["zusammen", "together", "„Wir essen zusammen.“"],
-      ["Date", "date", "„Unser erstes Date.“"],
-      ["Film", "movie", "„Welchen Film sehen wir?“"],
-      ["Musik", "music", "„Diese Musik gefällt mir.“"],
-      ["Foto", "photo", "„Mach ein Foto von uns!“"],
-    ],
-  },
-  {
-    jp: [
-      ["一緒に", "Issho ni", "together"],
-      ["デート", "Deeto", "date"],
-      ["映画", "Eiga", "movie"],
-      ["音楽", "Ongaku", "music"],
-      ["写真", "Shashin", "photo"],
-    ],
-    de: [
-      ["beschäftigt", "busy", "„Ich bin heute beschäftigt.“"],
-      ["müde", "tired", "„Ich bin müde, gute Nacht.“"],
-      ["glücklich", "happy", "„Ich bin so glücklich!“"],
-      ["einsam", "lonely", "„Ohne dich fühle ich mich einsam.“"],
-      ["alles in Ordnung", "all right", "„Alles in Ordnung?“"],
-    ],
-  },
-  {
-    jp: [
-      ["忙しい", "Isogashii", "busy"],
-      ["疲れた", "Tsukareta", "tired"],
-      ["嬉しい", "Ureshii", "happy"],
-      ["寂しい", "Sabishii", "lonely"],
-      ["大丈夫", "Daijoubu", "all right"],
-    ],
-    de: [
-      ["nächster Monat", "next month", "„Nächster Monat fliege ich.“"],
-      ["nächstes Jahr", "next year", "„Nächstes Jahr heiraten wir?“"],
-      ["bis bald", "see you soon", "„Bis bald, mein Schatz!“"],
-      ["ich freue mich", "I'm looking forward to it", "„Ich freue mich auf dich!“"],
-      ["umarmen", "to hug", "„Ich möchte dich umarmen.“"],
-    ],
-  },
-  {
-    jp: [
-      ["来月", "Raigetsu", "next month"],
-      ["来年", "Rainen", "next year"],
-      ["またね", "Mata ne", "see you soon"],
-      ["楽しみ", "Tanoshimi", "looking forward to it"],
-      ["抱きしめたい", "Dakishimetai", "I want to hug you"],
-    ],
-    de: [
-      ["die Fernbeziehung", "long-distance relationship", "„Unsere Fernbeziehung ist stark.“"],
-      ["vermissen", "to miss", "„Ich vermisse dich.“"],
-      ["das Treffen", "the meeting", "„Das Treffen war wunderschön.“"],
-      ["die Zeitverschiebung", "time difference", "„Die Zeitverschiebung ist 7 Stunden.“"],
-      ["die Umarmung", "the hug", "„Eine Umarmung tut gut.“"],
-    ],
-  },
+const VOCAB_JP = [
+  ["こんにちは", "Konnichiwa", "Hello"],
+  ["ありがとう", "Arigatou", "Thank you"],
+  ["さようなら", "Sayounara", "Goodbye"],
+  ["おはよう", "Ohayou", "Good morning"],
+  ["おやすみ", "Oyasumi", "Good night"],
+  ["愛してる", "Aishiteru", "I love you"],
+  ["大好き", "Daisuki", "I like you very much"],
+  ["会いたい", "Aitai", "I miss you"],
+  ["元気？", "Genki?", "Are you okay?"],
+  ["かわいい", "Kawaii", "cute"],
+  ["水", "Mizu", "water"],
+  ["ご飯", "Gohan", "meal / rice"],
+  ["美味しい", "Oishii", "delicious"],
+  ["飲み物", "Nomimono", "drink"],
+  ["朝ごはん", "Asagohan", "breakfast"],
+  ["猫", "Neko", "cat"],
+  ["犬", "Inu", "dog"],
+  ["鳥", "Tori", "bird"],
+  ["花", "Hana", "flower"],
+  ["星", "Hoshi", "star"],
+  ["今日", "Kyou", "today"],
+  ["明日", "Ashita", "tomorrow"],
+  ["昨日", "Kinou", "yesterday"],
+  ["いつ", "Itsu", "when"],
+  ["ここ", "Koko", "here"],
+  ["駅", "Eki", "train station"],
+  ["飛行機", "Hikouki", "airplane"],
+  ["切符", "Kippu", "ticket"],
+  ["空港", "Kuukou", "airport"],
+  ["旅行", "Ryokou", "trip"],
+  ["暑い", "Atsui", "hot"],
+  ["寒い", "Samui", "cold"],
+  ["雨", "Ame", "rain"],
+  ["雪", "Yuki", "snow"],
+  ["晴れ", "Hare", "sunny"],
+  ["一緒に", "Issho ni", "together"],
+  ["デート", "Deeto", "date"],
+  ["映画", "Eiga", "movie"],
+  ["音楽", "Ongaku", "music"],
+  ["写真", "Shashin", "photo"],
+  ["忙しい", "Isogashii", "busy"],
+  ["疲れた", "Tsukareta", "tired"],
+  ["嬉しい", "Ureshii", "happy"],
+  ["寂しい", "Sabishii", "lonely"],
+  ["大丈夫", "Daijoubu", "all right"],
+  ["来月", "Raigetsu", "next month"],
+  ["来年", "Rainen", "next year"],
+  ["またね", "Mata ne", "see you soon"],
+  ["楽しみ", "Tanoshimi", "looking forward to it"],
+  ["抱きしめたい", "Dakishimetai", "I want to hug you"],
+  ["家", "Ie", "house / home"],
+  ["部屋", "Heya", "room"],
+  ["窓", "Mado", "window"],
+  ["ドア", "Doa", "door"],
+  ["ベッド", "Beddo", "bed"],
+  ["椅子", "Isu", "chair"],
+  ["机", "Tsukue", "desk"],
+  ["本", "Hon", "book"],
+  ["鉛筆", "Enpitsu", "pencil"],
+  ["学校", "Gakkou", "school"],
+  ["先生", "Sensei", "teacher"],
+  ["友達", "Tomodachi", "friend"],
+  ["家族", "Kazoku", "family"],
+  ["母", "Haha", "mother"],
+  ["父", "Chichi", "father"],
+  ["姉", "Ane", "older sister"],
+  ["兄", "Ani", "older brother"],
+  ["子供", "Kodomo", "child"],
+  ["電車", "Densha", "train"],
+  ["バス", "Basu", "bus"],
+  ["車", "Kuruma", "car"],
+  ["自転車", "Jitensha", "bicycle"],
+  ["歩く", "Aruku", "to walk"],
+  ["走る", "Hashiru", "to run"],
+  ["泳ぐ", "Oyogu", "to swim"],
+  ["歌う", "Utau", "to sing"],
+  ["踊る", "Odoru", "to dance"],
+  ["料理", "Ryouri", "cooking"],
+  ["料理する", "Ryouri suru", "to cook"],
+  ["食べる", "Taberu", "to eat"],
+  ["飲む", "Nomu", "to drink"],
+  ["寝る", "Neru", "to sleep"],
+  ["起きる", "Okiru", "to wake up"],
+  ["働く", "Hataraku", "to work"],
+  ["勉強する", "Benkyou suru", "to study"],
+  ["読む", "Yomu", "to read"],
+  ["書く", "Kaku", "to write"],
+  ["見る", "Miru", "to see / watch"],
+  ["聞く", "Kiku", "to listen / ask"],
+  ["話す", "Hanasu", "to speak"],
+  ["笑う", "Warau", "to laugh"],
+  ["泣く", "Naku", "to cry"],
+  ["買う", "Kau", "to buy"],
+  ["行く", "Iku", "to go"],
+  ["来る", "Kuru", "to come"],
+  ["帰る", "Kaeru", "to return home"],
+  ["会う", "Au", "to meet"],
+  ["待つ", "Matsu", "to wait"],
+  ["ありがとうね", "Arigatou ne", "thanks a lot"],
+  ["頑張って", "Ganbatte", "do your best"],
 ];
+
+const VOCAB_DE = [
+  ["Hallo", "hello", "Hallo!"],
+  ["Danke", "thank you", "Danke schön!"],
+  ["Bitte", "please", "Bitte, gern geschehen."],
+  ["Tschüss", "bye", "Tschüss, bis bald!"],
+  ["ja", "yes", "Ja, bitte."],
+  ["nein", "no", "Nein, danke."],
+  ["vielleicht", "maybe", "Vielleicht morgen."],
+  ["gut", "good", "Mir geht's gut."],
+  ["schlecht", "bad", "Das Wetter ist schlecht."],
+  ["schön", "beautiful", "Ein schöner Tag."],
+  ["groß", "big", "Ein großes Haus."],
+  ["klein", "small", "Ein kleiner Hund."],
+  ["neu", "new", "Mein neues Auto."],
+  ["alt", "old", "Ein alter Freund."],
+  ["schnell", "fast", "Schnell!"],
+  ["langsam", "slow", "Sprich bitte langsam."],
+  ["früh", "early", "Es ist noch früh."],
+  ["spät", "late", "Es ist spät."],
+  ["heute", "today", "Heute ist Montag."],
+  ["morgen", "tomorrow", "Bis morgen!"],
+  ["gestern", "yesterday", "Gestern war Sonntag."],
+  ["jetzt", "now", "Ich komme jetzt."],
+  ["immer", "always", "Immer gerne."],
+  ["nie", "never", "Nie wieder!"],
+  ["oft", "often", "Ich trinke oft Tee."],
+  ["manchmal", "sometimes", "Manchmal regnet es."],
+  ["hier", "here", "Hier wohne ich."],
+  ["dort", "there", "Dort ist der Bahnhof."],
+  ["wer", "who", "Wer bist du?"],
+  ["was", "what", "Was ist das?"],
+  ["wann", "when", "Wann kommst du?"],
+  ["warum", "why", "Warum nicht?"],
+  ["wie", "how", "Wie geht's?"],
+  ["wo", "where", "Wo wohnst du?"],
+  ["Katze", "cat", "Die Katze schläft."],
+  ["Hund", "dog", "Der Hund bellt."],
+  ["Vogel", "bird", "Ein Vogel singt."],
+  ["Fisch", "fish", "Der Fisch schwimmt."],
+  ["Pferd", "horse", "Das Pferd rennt."],
+  ["Apfel", "apple", "Der Apfel ist rot."],
+  ["Brot", "bread", "Frisches Brot."],
+  ["Käse", "cheese", "Ich mag Käse."],
+  ["Milch", "milk", "Ein Glas Milch."],
+  ["Kaffee", "coffee", "Einen Kaffee, bitte."],
+  ["Tee", "tea", "Tee mit Zitrone."],
+  ["Wasser", "water", "Ein Glas Wasser."],
+  ["Bier", "beer", "Ein Bier, bitte."],
+  ["Wein", "wine", "Ein Glas Rotwein."],
+  ["Zucker", "sugar", "Ohne Zucker, bitte."],
+  ["Salz", "salt", "Ein bisschen Salz."],
+  ["Pfeffer", "pepper", "Pfeffer und Salz."],
+  ["Suppe", "soup", "Die Suppe ist heiß."],
+  ["Salat", "salad", "Ein grüner Salat."],
+  ["Nudeln", "pasta", "Nudeln mit Tomatensoße."],
+  ["Reis", "rice", "Reis mit Gemüse."],
+  ["Fleisch", "meat", "Ich esse kein Fleisch."],
+  ["Hähnchen", "chicken", "Hähnchen mit Reis."],
+  ["Ei", "egg", "Ein gekochtes Ei."],
+  ["Butter", "butter", "Butter aufs Brot."],
+  ["Honig", "honey", "Honig im Tee."],
+  ["Marmelade", "jam", "Marmelade mit Butter."],
+  ["Wurst", "sausage", "Eine frische Wurst."],
+  ["Schinken", "ham", "Schinken und Melone."],
+  ["Bahnhof", "train station", "Der Bahnhof ist nah."],
+  ["Flughafen", "airport", "Wir fahren zum Flughafen."],
+  ["Flugzeug", "airplane", "Das Flugzeug startet gleich."],
+  ["Zug", "train", "Der Zug nach Berlin."],
+  ["Bus", "bus", "Der Bus kommt gleich."],
+  ["Auto", "car", "Unser Auto ist neu."],
+  ["Taxi", "taxi", "Ein Taxi, bitte."],
+  ["Straße", "street", "Die Straße ist lang."],
+  ["Brücke", "bridge", "Eine schöne Brücke."],
+  ["Stadt", "city", "Leipzig ist eine schöne Stadt."],
+  ["Land", "country", "Deutschland und Japan."],
+  ["Welt", "world", "Die ganze Welt."],
+  ["Berg", "mountain", "Ein hoher Berg."],
+  ["Meer", "sea", "Das Meer ist blau."],
+  ["Fluss", "river", "Der Rhein ist ein Fluss."],
+  ["Wald", "forest", "Ein Spaziergang im Wald."],
+  ["Park", "park", "Der Park ist grün."],
+  ["Garten", "garden", "Blumen im Garten."],
+  ["Strand", "beach", "Wir fahren an den Strand."],
+  ["Insel", "island", "Eine kleine Insel."],
+  ["Landkarte", "map", "Wo ist die Landkarte?"],
+  ["Foto", "photo", "Ein Foto von uns."],
+  ["Geschenk", "gift", "Ein Geschenk für dich."],
+  ["Brief", "letter", "Ein Brief aus Japan."],
+  ["Telefon", "phone", "Mein Telefon."],
+  ["Computer", "computer", "Arbeit am Computer."],
+  ["Internet", "internet", "Das Internet ist langsam."],
+  ["Sprache", "language", "Ich lerne Deutsch."],
+  ["Wort", "word", "Ein neues Wort."],
+  ["Satz", "sentence", "Ein langer Satz."],
+  ["Frage", "question", "Eine gute Frage."],
+  ["Antwort", "answer", "Die richtige Antwort."],
+  ["Problem", "problem", "Kein Problem!"],
+  ["Idee", "idea", "Eine tolle Idee!"],
+  ["Zeit", "time", "Wir haben Zeit."],
+  ["Liebe", "love", "Liebe Grüße!"],
+  ["Auf Wiedersehen", "goodbye (formal)", "Auf Wiedersehen!"],
+];
+
+const VOCAB_DAYS = 100;
+const WORDS_PER_DAY = 5;
+
+function vocabForDay(day) {
+  const start = (day * WORDS_PER_DAY) % VOCAB_JP.length;
+  const pick = (arr) => Array.from({ length: WORDS_PER_DAY }, (_, i) => arr[(start + i) % arr.length]);
+  return { jp: pick(VOCAB_JP), de: pick(VOCAB_DE) };
+}
+
+function todayKey() {
+  const n = new Date();
+  return keyOf(n.getFullYear(), n.getMonth(), n.getDate());
+}
 
 const DEFAULT_STATE = {
   startDate: "",
@@ -192,9 +243,10 @@ const DEFAULT_STATE = {
     { text: "Cook together (Japanese & German)", done: false },
     { text: "City trip", done: false },
   ],
-  locations: { joshua: "Berlin", saki: "Tokyo" },
+  locations: { joshua: "Brussels", saki: "Leipzig Connewitz" },
   vocabDone: {},
   vocabDay: 0,
+  vocabStartDate: todayKey(),
 };
 
 function loadState() {
@@ -217,6 +269,10 @@ function save() {
 const $ = (sel) => document.querySelector(sel);
 
 function fmtDate(d) {
+  return d.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+}
+
+function fmtDateLong(d) {
   return d.toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 }
 
@@ -228,6 +284,16 @@ function daysBetween(a, b) {
 function parseLocalDate(str) {
   const [y, m, d] = str.split("-").map(Number);
   return new Date(y, m - 1, d);
+}
+
+function keyOf(y, m, d) {
+  return `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
 }
 
 /* ---------- Tabs ---------- */
@@ -254,9 +320,9 @@ function renderHero() {
       const d = Math.floor(diffMs / 86400000);
       const h = Math.floor((diffMs % 86400000) / 3600000);
       const m = Math.floor((diffMs % 3600000) / 60000);
-      el.textContent = `${d} days, ${h} hrs ${m} min until we see each other again`;
+      el.textContent = `${d} days, ${h} hrs ${m} min until we meet again`;
     } else {
-      el.textContent = "We're seeing each other right now, or it's over ♥";
+      el.textContent = "Meetup time is here";
     }
   } else {
     el.textContent = "Enter your next meetup";
@@ -264,9 +330,9 @@ function renderHero() {
   if (state.startDate) {
     const start = parseLocalDate(state.startDate);
     const d = daysBetween(start, new Date());
-    together.textContent = `Together for ${d} days – since ${fmtDate(start)}`;
+    together.textContent = `Day ${d} since we first met (${fmtDateLong(start)})`;
   } else {
-    together.textContent = "Enter your relationship start date";
+    together.textContent = "Enter when you first met";
   }
 }
 
@@ -284,11 +350,11 @@ function renderMeetup() {
     const d = Math.floor(diffMs / 86400000);
     countdown = `<p class="big">${d} day${d === 1 ? "" : "s"} left</p>`;
   } else {
-    countdown = '<p class="big">It\'s time ♥</p>';
+    countdown = '<p class="big">It\'s time</p>';
   }
   view.innerHTML = `
     ${countdown}
-    <p>📆 ${fmtDate(target)} at ${target.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}</p>
+    <p>📆 ${fmtDateLong(target)} at ${target.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}</p>
     ${m.place ? `<p>📍 ${escapeHtml(m.place)}</p>` : ""}
     ${m.duration ? `<p>⏳ For ${escapeHtml(m.duration)}</p>` : ""}
   `;
@@ -302,13 +368,7 @@ function renderStart() {
   }
   const start = parseLocalDate(state.startDate);
   const d = daysBetween(start, new Date());
-  view.innerHTML = `<p class="big">${d} days</p><p>since ${fmtDate(start)}</p>`;
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  }[c]));
+  view.innerHTML = `<p class="big">${d} days</p><p>since we first met on ${fmtDateLong(start)}</p>`;
 }
 
 $("#save-meetup").addEventListener("click", () => {
@@ -351,17 +411,13 @@ function initOverview() {
 
 function tickClocks() {
   const now = new Date();
-  $("#clock-de").textContent = now.toLocaleTimeString("en-GB", { timeZone: "Europe/Berlin", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  $("#clock-de").textContent = now.toLocaleTimeString("en-GB", { timeZone: "Europe/Brussels", hour: "2-digit", minute: "2-digit", second: "2-digit" });
   $("#clock-jp").textContent = now.toLocaleTimeString("en-GB", { timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", second: "2-digit" });
 }
 
 /* ---------- Calendar ---------- */
 
 let calYear, calMonth, selectedDay = null;
-
-function keyOf(y, m, d) {
-  return `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-}
 
 function renderCalendar() {
   const grid = $("#cal-grid");
@@ -370,14 +426,14 @@ function renderCalendar() {
   const first = new Date(calYear, calMonth, 1);
   let startOffset = (first.getDay() + 6) % 7; // Monday = 0
   const start = new Date(calYear, calMonth, 1 - startOffset);
-  const todayKey = keyOf(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+  const todayK = todayKey();
   for (let i = 0; i < 42; i++) {
     const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
     const key = keyOf(d.getFullYear(), d.getMonth(), d.getDate());
     const cell = document.createElement("div");
     cell.className = "cal-day";
     if (d.getMonth() !== calMonth) cell.classList.add("other-month");
-    if (key === todayKey) cell.classList.add("today");
+    if (key === todayK) cell.classList.add("today");
     if (key === selectedDay) cell.classList.add("selected");
     cell.innerHTML = `<span>${d.getDate()}</span>`;
     (state.events[key] || []).forEach(() => {
@@ -403,7 +459,7 @@ function renderEvents() {
     return;
   }
   const [y, m, d] = selectedDay.split("-").map(Number);
-  title.textContent = `Events on ${fmtDate(new Date(y, m - 1, d))}`;
+  title.textContent = `Events on ${fmtDateLong(new Date(y, m - 1, d))}`;
   const events = state.events[selectedDay] || [];
   if (!events.length) {
     list.innerHTML = "<li>No events on this day yet.</li>";
@@ -431,7 +487,7 @@ function initCalendar() {
   const now = new Date();
   calYear = now.getFullYear();
   calMonth = now.getMonth();
-  selectedDay = keyOf(now.getFullYear(), now.getMonth(), now.getDate());
+  selectedDay = todayKey();
   $("#cal-prev").addEventListener("click", () => {
     calMonth--;
     if (calMonth < 0) { calMonth = 11; calYear--; }
@@ -546,8 +602,8 @@ function renderMap() {
   svg.innerHTML = "";
 
   const land = document.createElementNS(NS, "g");
-  land.setAttribute("fill", "#cfe3d4");
-  land.setAttribute("stroke", "#a9cbb2");
+  land.setAttribute("fill", "#dde5dc");
+  land.setAttribute("stroke", "#b8c6b4");
   land.setAttribute("stroke-width", "1.5");
   CONTINENTS.forEach((d) => {
     const p = document.createElementNS(NS, "path");
@@ -571,7 +627,7 @@ function renderMap() {
     const line = document.createElementNS(NS, "line");
     line.setAttribute("x1", pa.x); line.setAttribute("y1", pa.y);
     line.setAttribute("x2", pb.x); line.setAttribute("y2", pb.y);
-    line.setAttribute("stroke", "#e11d48");
+    line.setAttribute("stroke", "#44546a");
     line.setAttribute("stroke-width", "2");
     line.setAttribute("stroke-dasharray", "7 6");
     svg.appendChild(line);
@@ -582,7 +638,7 @@ function renderMap() {
     const pulse = document.createElementNS(NS, "circle");
     pulse.setAttribute("cx", p.x); pulse.setAttribute("cy", p.y);
     pulse.setAttribute("r", 14); pulse.setAttribute("fill", color);
-    pulse.setAttribute("opacity", "0.25");
+    pulse.setAttribute("opacity", "0.2");
     const dot = document.createElementNS(NS, "circle");
     dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y);
     dot.setAttribute("r", 7); dot.setAttribute("fill", color);
@@ -598,12 +654,12 @@ function renderMap() {
     svg.appendChild(g);
   }
 
-  marker(pa, "#2563eb", "Joshua · " + state.locations.joshua);
-  marker(pb, "#e11d48", "Saki · " + state.locations.saki);
+  marker(pa, "#44546a", "Joshua · " + state.locations.joshua);
+  marker(pb, "#b45309", "Saki · " + state.locations.saki);
 
   const km = haversineKm(a, b);
   $("#distance-label").textContent = km === 0
-    ? "You're in the same place ♥"
+    ? "You're in the same place"
     : `Currently ${km.toLocaleString("en-US")} km apart`;
 }
 
@@ -621,13 +677,18 @@ function initMap() {
   renderMap();
 }
 
-/* ---------- Vocabulary ---------- */
+/* ---------- Vocabulary (100 days) ---------- */
+
+function vocabDate(day) {
+  const start = parseLocalDate(state.vocabStartDate || todayKey());
+  return new Date(start.getFullYear(), start.getMonth(), start.getDate() + day);
+}
 
 function renderVocab() {
-  const day = Math.min(Math.max(state.vocabDay, 0), VOCAB.length - 1);
+  const day = Math.min(Math.max(state.vocabDay, 0), VOCAB_DAYS - 1);
   state.vocabDay = day;
-  $("#vocab-day-title").textContent = `Day ${day + 1} of ${VOCAB.length}`;
-  const data = VOCAB[day];
+  $("#vocab-day-title").textContent = `Day ${day + 1} of ${VOCAB_DAYS} · ${fmtDate(vocabDate(day))}`;
+  const data = vocabForDay(day);
 
   function fill(listSel, items, prefix) {
     const list = $(listSel);
@@ -662,7 +723,7 @@ function renderVocab() {
 
 function initVocab() {
   $("#vocab-prev").addEventListener("click", () => { state.vocabDay = Math.max(0, state.vocabDay - 1); save(); renderVocab(); });
-  $("#vocab-next").addEventListener("click", () => { state.vocabDay = Math.min(VOCAB.length - 1, state.vocabDay + 1); save(); renderVocab(); });
+  $("#vocab-next").addEventListener("click", () => { state.vocabDay = Math.min(VOCAB_DAYS - 1, state.vocabDay + 1); save(); renderVocab(); });
   renderVocab();
 }
 
