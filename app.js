@@ -627,7 +627,7 @@ function renderMap() {
     const line = document.createElementNS(NS, "line");
     line.setAttribute("x1", pa.x); line.setAttribute("y1", pa.y);
     line.setAttribute("x2", pb.x); line.setAttribute("y2", pb.y);
-    line.setAttribute("stroke", "#44546a");
+    line.setAttribute("stroke", "#dc2626");
     line.setAttribute("stroke-width", "2");
     line.setAttribute("stroke-dasharray", "7 6");
     svg.appendChild(line);
@@ -654,7 +654,7 @@ function renderMap() {
     svg.appendChild(g);
   }
 
-  marker(pa, "#44546a", "Joshua · " + state.locations.joshua);
+  marker(pa, "#dc2626", "Joshua · " + state.locations.joshua);
   marker(pb, "#b45309", "Saki · " + state.locations.saki);
 
   const km = haversineKm(a, b);
