@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saki ♥ Joshua</title>
+<title>Saki &amp; Joshua</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="topbar">
-  <h1 class="logo">Saki <span class="heart">♥</span> Joshua</h1>
+  <h1 class="logo">Saki &amp; Joshua</h1>
   <nav class="tabs">
     <button class="tab active" data-tab="uebersicht">Overview</button>
     <button class="tab" data-tab="kalender">Calendar</button>
@@ -28,31 +28,18 @@
       <svg class="hero-bg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#fda4af"/>
-            <stop offset="0.55" stop-color="#f9a8d4"/>
-            <stop offset="1" stop-color="#c4b5fd"/>
+            <stop offset="0" stop-color="#dbe4ee"/>
+            <stop offset="0.6" stop-color="#c3d0de"/>
+            <stop offset="1" stop-color="#aebfd2"/>
           </linearGradient>
-          <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" stop-color="#fff7ed"/>
-            <stop offset="1" stop-color="#fdba74"/>
-          </radialGradient>
         </defs>
         <rect width="1200" height="420" fill="url(#sky)"/>
-        <circle cx="600" cy="330" r="110" fill="url(#sun)" opacity="0.95"/>
-        <path d="M0,340 L180,220 L320,330 L470,240 L640,350 L800,230 L960,340 L1200,250 L1200,420 L0,420 Z" fill="#818cf8" opacity="0.55"/>
-        <path d="M0,380 L150,300 L340,380 L520,310 L700,390 L900,300 L1080,380 L1200,330 L1200,420 L0,420 Z" fill="#6366f1" opacity="0.6"/>
-        <path d="M880,360 L960,180 L1040,360 Z" fill="#4f46e5" opacity="0.65"/>
-        <circle cx="960" cy="170" r="10" fill="#e0e7ff"/>
-        <g fill="#be123c">
-          <path d="M600,250 c-18,-26 -58,-18 -58,12 c0,26 34,44 58,62 c24,-18 58,-36 58,-62 c0,-30 -40,-38 -58,-12 Z"/>
-        </g>
-        <g fill="#fb7185" opacity="0.85">
-          <path d="M520,180 c-9,-13 -29,-9 -29,6 c0,13 17,22 29,31 c12,-9 29,-18 29,-31 c0,-15 -20,-19 -29,-6 Z"/>
-          <path d="M690,160 c-7,-10 -23,-7 -23,5 c0,10 14,17 23,24 c9,-7 23,-14 23,-24 c0,-12 -16,-15 -23,-5 Z"/>
-        </g>
+        <circle cx="600" cy="320" r="90" fill="#f4f6f8" opacity="0.9"/>
+        <path d="M0,340 L180,230 L320,330 L470,250 L640,350 L800,240 L960,340 L1200,260 L1200,420 L0,420 Z" fill="#8fa3b8" opacity="0.5"/>
+        <path d="M0,380 L150,310 L340,380 L520,320 L700,390 L900,310 L1080,380 L1200,340 L1200,420 L0,420 Z" fill="#6e8296" opacity="0.55"/>
       </svg>
       <div class="hero-content">
-        <p class="hero-kicker">Our vision of the future</p>
+        <p class="hero-kicker">Our plans ahead</p>
         <h2 id="hero-countdown">…</h2>
         <p class="hero-sub" id="hero-together">…</p>
       </div>
@@ -63,9 +50,9 @@
         <h3>⏰ Current time</h3>
         <div class="clocks">
           <div class="clock">
-            <span class="clock-place">🇩🇪 Joshua</span>
+            <span class="clock-place">🇧🇪 Joshua</span>
             <span class="clock-time" id="clock-de">--:--:--</span>
-            <span class="clock-tz">Europe/Berlin</span>
+            <span class="clock-tz">Europe/Brussels</span>
           </div>
           <div class="clock">
             <span class="clock-place">🇯🇵 Saki</span>
@@ -82,7 +69,7 @@
           <summary>edit</summary>
           <label>When? <input type="datetime-local" id="edit-meetup-date"></label>
           <label>How long? <input type="text" id="edit-meetup-duration" placeholder="e.g. 5 days"></label>
-          <label>Where? <input type="text" id="edit-meetup-place" placeholder="e.g. Tokyo"></label>
+          <label>Where? <input type="text" id="edit-meetup-place" placeholder="e.g. Leipzig"></label>
           <button class="btn" id="save-meetup">Save</button>
         </details>
       </div>
@@ -103,11 +90,11 @@
       </div>
 
       <div class="card">
-        <h3>💞 Together since</h3>
+        <h3>📍 Days since we met</h3>
         <div class="meetup-view" id="start-view"></div>
         <details class="editor">
           <summary>edit</summary>
-          <label>Relationship start <input type="date" id="edit-start-date"></label>
+          <label>First met on <input type="date" id="edit-start-date"></label>
           <button class="btn" id="save-start">Save</button>
         </details>
       </div>
@@ -154,10 +141,10 @@
     <div class="card">
       <h3>🗺️ Where are you right now?</h3>
       <div class="loc-pickers">
-        <label>🇩🇪 Joshua is in
+        <label>🇧🇪 Joshua is in
           <select id="loc-joshua"></select>
         </label>
-        <label>🇯🇵 Saki is in
+        <label>🇩🇪 Saki is in
           <select id="loc-saki"></select>
         </label>
       </div>
@@ -176,7 +163,7 @@
         <h3 id="vocab-day-title">Day 1</h3>
         <button class="btn small" id="vocab-next">Next day ›</button>
       </div>
-      <p class="vocab-hint">5 words every day – ticked words are saved.</p>
+      <p class="vocab-hint">5 words per day, each day with its date – ticked words are saved.</p>
       <div class="vocab-cols">
         <div class="vocab-col">
           <h4>🇯🇵 Joshua learns Japanese</h4>
@@ -192,7 +179,7 @@
 
 </main>
 
-<footer class="footer">made with ♥ for Saki &amp; Joshua</footer>
+<footer class="footer">for Saki &amp; Joshua</footer>
 
 <script src="app.js"></script>
 </body>
