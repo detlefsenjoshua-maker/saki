@@ -1,11 +1,11 @@
 :root {
-  --accent: #e11d48;
-  --accent-soft: #ffe4e6;
+  --accent: #44546a;
+  --accent-soft: #e8edf3;
   --ink: #1f2937;
   --muted: #6b7280;
   --card: #ffffff;
-  --bg: #faf7f5;
-  --border: #ececec;
+  --bg: #f6f7f9;
+  --border: #e5e7eb;
   --radius: 14px;
 }
 
@@ -34,7 +34,6 @@ body {
 }
 
 .logo { font-size: 1.25rem; margin: 0; }
-.heart { color: var(--accent); }
 
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -88,10 +87,10 @@ main { max-width: 1000px; margin: 0 auto; padding: 20px 16px 40px; }
   text-align: center;
 }
 .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-content { position: relative; padding: 32px 20px; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,0.35); }
-.hero-kicker { margin: 0; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78rem; opacity: 0.9; }
+.hero-content { position: relative; padding: 32px 20px; color: var(--ink); }
+.hero-kicker { margin: 0; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78rem; color: var(--muted); }
 .hero-content h2 { margin: 6px 0; font-size: clamp(1.4rem, 4vw, 2.2rem); }
-.hero-sub { margin: 0; font-size: 0.98rem; }
+.hero-sub { margin: 0; font-size: 0.98rem; color: var(--muted); }
 
 /* Clocks */
 .clocks { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -143,7 +142,7 @@ main { max-width: 1000px; margin: 0 auto; padding: 20px 16px 40px; }
   font-size: 0.9rem;
   margin-top: 10px;
 }
-.btn:hover { filter: brightness(1.05); }
+.btn:hover { filter: brightness(1.1); }
 .btn.small { padding: 5px 12px; margin-top: 0; }
 
 input[type="text"], input[type="date"], input[type="datetime-local"], select {
@@ -204,7 +203,7 @@ input[type="text"], input[type="date"], input[type="datetime-local"], select {
 /* Map */
 .loc-pickers { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
 .loc-pickers label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; color: var(--muted); min-width: 200px; flex: 1; }
-.map-wrap { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #eef4fb; }
+.map-wrap { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #eef1f4; }
 #world-map { display: block; width: 100%; height: auto; }
 .distance { text-align: center; font-weight: 600; margin: 12px 0 0; }
 
